@@ -168,8 +168,10 @@ MiQueryListItemPresenter >> initializeQueryTypesDropList [
 
 	| sortedItems |
 	queryTypesDropListPresenter := self newDropList.
-	sortedItems := queriesListPresenter availableQueryTypes sorted: #label ascending.
+	sortedItems := queriesListPresenter availableQueryTypes sorted:
+		               #label ascending.
 	queryTypesDropListPresenter
+		startWithoutSelection;
 		items: sortedItems;
 		display: [ :queryClass | queryClass label ];
 		whenSelectedItemChangedDo: [ :queryClass | 
@@ -266,7 +268,7 @@ MiQueryListItemPresenter >> updateQueryConfiguratorPresenterFor: queryClass [
 	| newQuery |
 	"Create the new query"
 	newQuery := self newQueryForClass: queryClass.
-
+	
 	"Instantiate the configuration presenter with the new created query"
 	self instantiateConfiguratorPresenterForQuery: newQuery.
 
